@@ -19,4 +19,14 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:date_of_birth) }
     it { should validate_presence_of(:username) }
   end
+
+  describe 'Custom validations' do
+    context 'when user is 18 years or older' do
+      let(:user) { FactoryBot.create(:user, date_of_birth: (Time.zone.now - 12.years).to_date) }
+
+      it 'raises an error' do
+        expect { user }.to raise_error
+      end
+    end
+  end
 end

@@ -7,4 +7,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :first_name, :last_name, :email, :date_of_birth, :username, presence: true
+  validate :user_eighteen_or_older
+
+  private
+
+  def user_eighteen_or_older
+    errors.add(:date_of_birth, 'Must be 18 or older.') unless date_of_birth.before? Time.zone.now - 18.years
+  end
 end
