@@ -32,6 +32,11 @@
   </div>
 
   <div>
+    <%= form.label :logo, style: "display: block" %>
+    <%= form.file_field :logo %>
+  </div>
+
+  <div>
     <%= form.label :alcohol_served, style: "display: block" %>
     <%= form.check_box :alcohol_served %>
   </div>
