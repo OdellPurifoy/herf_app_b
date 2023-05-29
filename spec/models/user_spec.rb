@@ -12,6 +12,10 @@ RSpec.describe User, type: :model do
     it { should have_db_column(:username).of_type(:string) }
   end
 
+  describe 'Model Associations' do
+    it { should have_one(:lounge).dependent(:destroy) }
+  end
+
   describe 'Custom validations' do
     context 'when a user is under 18 years of age' do
       let(:user) { FactoryBot.create(:user, date_of_birth: (Time.zone.now - 12.years).to_date) }

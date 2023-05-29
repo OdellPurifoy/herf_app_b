@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one :lounge, dependent: :destroy
+
   validates_presence_of :first_name, :last_name, :email, :date_of_birth, :username
   validate :user_eighteen_or_older
 
