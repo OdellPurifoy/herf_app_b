@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Lounge, type: :model do
@@ -19,7 +21,7 @@ RSpec.describe Lounge, type: :model do
 
     it 'creates the lounge without error' do
       lounge.save!
-      expect{lounge}.to_not raise_error
+      expect { lounge }.to_not raise_error
     end
 
     it 'creates the correct association between the user and the lounge' do
@@ -31,7 +33,15 @@ RSpec.describe Lounge, type: :model do
     let(:lounge) { FactoryBot.create(:lounge, user: nil) }
 
     it 'raises an error' do
-      expect{lounge}.to raise_error(ActiveRecord::RecordInvalid)
+      expect { lounge }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+  describe 'Creating a lounge without required attributes' do
+    let(:lounge) { FactoryBot.create(:lounge, name: '', phone_number: '', description: '') }
+
+    it 'raises an error' do
+      expect { lounge }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end
