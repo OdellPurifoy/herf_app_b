@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one :lounge, dependent: :destroy
 
   validates_presence_of :first_name, :last_name, :email, :date_of_birth, :username
+  validates :phone_number, phone: { possible: true, allow_blank: true }
   validate :user_eighteen_or_older
 
   private
