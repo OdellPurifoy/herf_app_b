@@ -165,4 +165,17 @@ RSpec.describe '/lounges', type: :request do
       expect(response).to redirect_to(root_path)
     end
   end
+
+  describe 'GET /my_lounge' do
+    it 'renders a successful response if lounge is present' do
+      Lounge.create! valid_attributes
+      get my_lounge_url
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'redirects to root path if no lounge is found' do
+      get my_lounge_url
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
