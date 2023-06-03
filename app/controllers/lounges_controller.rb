@@ -49,6 +49,11 @@ class LoungesController < ApplicationController
     redirect_to root_path, status: :see_other, notice: 'Lounge was successfully deleted.'
   end
 
+  def my_lounge
+    @current_user_lounge = current_user.lounge
+    redirect_to root_path, notice: 'Sorry, your lounge could not be found.' unless @current_user_lounge.present?
+  end
+
   private
 
   def set_lounge
