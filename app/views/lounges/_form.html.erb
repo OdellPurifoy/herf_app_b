@@ -35,6 +35,11 @@
     <%= form.label :logo, style: "display: block" %>
     <%= form.file_field :logo %>
   </div>
+  
+  <div>
+    <%= form.lable :display_images, style: "display: block" %>
+    <%= form.file_field :display_images, multiple: true %>
+  </div>
 
   <div>
     <%= form.label :alcohol_served, style: "display: block" %>

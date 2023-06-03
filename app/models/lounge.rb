@@ -3,6 +3,7 @@
 class Lounge < ApplicationRecord
   belongs_to :user
   has_one_attached :logo
+  has_many_attached :display_images
 
   validates_presence_of :name, :phone_number, :description
   validates :phone_number, phone: { possible: true }
