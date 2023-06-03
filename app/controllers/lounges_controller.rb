@@ -35,6 +35,7 @@ class LoungesController < ApplicationController
     respond_to do |format|
       if @lounge.update(lounge_params)
         format.turbo_stream { redirect_to lounge_url(@lounge), notice: 'Lounge was successfully updated.' }
+        format.html { redirect_to lounge_url(@lounge), notice: 'Lounge was successfully updated.' }
         format.json { render :show, status: :ok, location: @lounge }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -48,6 +48,8 @@ RSpec.describe '/lounges', type: :request do
     }
   end
 
+  before { sign_in user }
+
   describe 'GET /index' do
     it 'renders a successful response' do
       Lounge.create! valid_attributes
@@ -160,7 +162,7 @@ RSpec.describe '/lounges', type: :request do
     it 'redirects to the lounges list' do
       lounge = Lounge.create! valid_attributes
       delete lounge_url(lounge)
-      expect(response).to redirect_to(lounges_url)
+      expect(response).to redirect_to(root_path)
     end
   end
 end
