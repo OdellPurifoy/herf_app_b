@@ -32,8 +32,32 @@
   </div>
 
   <div>
+    <%= form.fields_for :address do |address_form| %>
+      <%= address_form.label :address_street_1, style: "display: block" %>
+      <%= address_form.text_field :address_street_1 %>
+
+      <%= address_form.label :address_street_2, style: "display: block" %>
+      <%= address_form.text_field :address_street_2 %>
+
+      <%= address_form.label :city, style: "display: block" %>
+      <%= address_form.text_field :city %>
+
+      <%= address_form.label :state, style: "display: block" %>
+      <%= address_form.text_field :state %>
+
+      <%= address_form.label :zipcode, style: "display: block" %>
+      <%= address_form.text_field :zipcode %>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.label :logo, style: "display: block" %>
     <%= form.file_field :logo %>
+  </div>
+  
+  <div>
+    <%= form.label :display_images, style: "display: block" %>
+    <%= form.file_field :display_images, multiple: true %>
   </div>
 
   <div>

@@ -22,14 +22,16 @@ RSpec.describe '/lounges', type: :request do
   let(:valid_attributes) do
     {
       name: 'MyString',
-      phone_number: 'MyString',
+      phone_number: '555-123-4567',
       email: 'MyString',
       description: 'MyText',
       alcohol_served: false,
       food_served: false,
       outside_alcohol_allowed: false,
       outside_cigars_allowed: false,
-      user_id: user.id
+      user_id: user.id,
+      address_attributes: { address_street_1: '500 Riverdale Ave', address_street_2: '1G', city: 'Brooklyn',
+                            state: 'NY', zipcode: '10705' }
     }
   end
   let(:invalid_attributes) do
@@ -110,14 +112,16 @@ RSpec.describe '/lounges', type: :request do
       let(:new_attributes) do
         {
           name: 'Updated',
-          phone_number: 'MyString',
+          phone_number: '555-123-4567',
           email: 'MyString',
           description: 'MyText',
           alcohol_served: false,
           food_served: false,
           outside_alcohol_allowed: false,
           outside_cigars_allowed: false,
-          user_id: user.id
+          user_id: user.id,
+          address_attributes: { address_street_1: '500 Riverdale Ave', address_street_2: '1G', city: 'Yonkers',
+                                state: 'NY', zipcode: '10705' }
         }
       end
 

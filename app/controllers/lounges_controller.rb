@@ -14,6 +14,7 @@ class LoungesController < ApplicationController
   # GET /lounges/new
   def new
     @lounge = Lounge.new
+    @lounge.build_address
   end
 
   # GET /lounges/1/edit
@@ -67,6 +68,8 @@ class LoungesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def lounge_params
     params.require(:lounge).permit(:name, :phone_number, :email, :description, :alcohol_served, :food_served,
-                                   :outside_alcohol_allowed, :outside_cigars_allowed, :user_id, :logo)
+                                   :outside_alcohol_allowed, :outside_cigars_allowed, :user_id, :logo, 
+                                   address_attributes: %i[id address_street_1 address_street_2 city state zipcode], 
+                                   display_images: [])
   end
 end
