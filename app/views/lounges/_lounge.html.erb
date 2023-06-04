@@ -1,5 +1,10 @@
 <div id="<%= dom_id lounge %>">
   <p>
+    <strong>Logo:</strong>
+    <%= lounge.logo.present? ? image_tag(lounge&.logo) : '' %>
+  </p>
+
+  <p>
     <strong>Name:</strong>
     <%= lounge.name %>
   </p>
@@ -21,27 +26,27 @@
 
   <p>
     <strong>Address Street 1:</strong>
-    <%= lounge.address.address_street_1 %>
+    <%= lounge&.address&.address_street_1 %>
   </p>
 
   <p>
     <strong>Address Street 2:</strong>
-    <%= lounge.address.address_street_2 %>
+    <%= lounge&.address&.address_street_2 %>
   </p>
 
   <p>
     <strong>City:</strong>
-    <%= lounge.address.city %>
+    <%= lounge&.address&.city %>
   </p>
 
   <p>
     <strong>State:</strong>
-    <%= lounge.address.state %>
+    <%= lounge&.address&.state %>
   </p>
     
   <p>
     <strong>Zip Code:</strong>
-    <%= lounge.address.zipcode %>
+    <%= lounge&.address&.zipcode %>
   </p>
 
   <p>
