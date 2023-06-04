@@ -23,7 +23,7 @@ RSpec.describe '/lounges', type: :request do
     {
       name: 'MyString',
       phone_number: '555-123-4567',
-      email: 'MyString',
+      email: 'test@example.com',
       description: 'MyText',
       alcohol_served: false,
       food_served: false,
@@ -115,7 +115,7 @@ RSpec.describe '/lounges', type: :request do
         {
           name: 'Updated',
           phone_number: '555-123-4567',
-          email: 'MyString',
+          email: 'test@example.com',
           description: 'MyText',
           alcohol_served: false,
           food_served: false,
