@@ -44,4 +44,20 @@ RSpec.describe Lounge, type: :model do
       expect { lounge }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
+
+  describe 'Email REGEX validation' do
+    let(:lounge) { FactoryBot.create(:lounge, email: 'invalid_emailexample.com') }
+
+    it "raises an Email invalid error" do
+      expect{lounge}.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Email Email invalid")
+    end
+
+    context "when valid email is used" do
+      let(:lounge) { FactoryBot.create(:lounge, email: 'valid_email@example.com') }
+
+      it "does not raise an error" do
+        expect{lounge}.to_not raise_error
+      end
+    end
+  end
 end

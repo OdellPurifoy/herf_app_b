@@ -24,4 +24,28 @@ RSpec.describe Address, type: :model do
       expect { address }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
+
+  describe 'Zipcode validation' do
+    let(:address) { FactoryBot.create(:address, zipcode: "3463fsgfsfgs") }
+
+    it "is not a valid zipcode" do
+      expect{address}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    context "when valid 5 digit zipcode is used" do
+      let(:address) { FactoryBot.create(:address, zipcode: "11211") }
+
+      it "does not raise an error" do
+        expect{address}.to_not raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    context "when valid 9 digit zip code is used" do
+      let(:address) { FactoryBot.create(:address, zipcode: "12345-1234") }
+
+      it "does not raise an error" do
+        expect{address}.to_not raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+  end
 end
