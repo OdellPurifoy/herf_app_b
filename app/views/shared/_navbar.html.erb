@@ -4,6 +4,7 @@
     <% if user_signed_in? %>
       <%= link_to 'Profile', edit_user_registration_path %>
       <%= link_to 'Create Lounge', new_lounge_path %>
+      <%= link_to 'My Lounge', my_lounge_path %>
       <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to 'Log In', new_user_session_path %>

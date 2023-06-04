@@ -23,7 +23,7 @@ RSpec.describe '/lounges', type: :request do
     {
       name: 'MyString',
       phone_number: '555-123-4567',
-      email: 'MyString',
+      email: 'test@example.com',
       description: 'MyText',
       alcohol_served: false,
       food_served: false,
@@ -47,6 +47,8 @@ RSpec.describe '/lounges', type: :request do
       user_id: nil
     }
   end
+
+  before { sign_in user }
 
   describe 'GET /index' do
     it 'renders a successful response' do
@@ -113,7 +115,7 @@ RSpec.describe '/lounges', type: :request do
         {
           name: 'Updated',
           phone_number: '555-123-4567',
-          email: 'MyString',
+          email: 'test@example.com',
           description: 'MyText',
           alcohol_served: false,
           food_served: false,
@@ -160,7 +162,20 @@ RSpec.describe '/lounges', type: :request do
     it 'redirects to the lounges list' do
       lounge = Lounge.create! valid_attributes
       delete lounge_url(lounge)
-      expect(response).to redirect_to(lounges_url)
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
+  describe 'GET /my_lounge' do
+    it 'renders a successful response if lounge is present' do
+      Lounge.create! valid_attributes
+      get my_lounge_url
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'redirects to root path if no lounge is found' do
+      get my_lounge_url
+      expect(response).to have_http_status(:not_found)
     end
   end
 end
