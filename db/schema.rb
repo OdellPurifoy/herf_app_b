@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_03_020914) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_004734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -55,6 +55,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_03_020914) do
     t.index ["lounge_id"], name: "index_addresses_on_lounge_id"
   end
 
+  create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "event_name", null: false
+    t.string "event_type", null: false
+    t.string "event_url"
+    t.string "zoom_code"
+    t.boolean "rsvp_needed", default: false
+    t.integer "maximum_capacity"
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.boolean "members_only", default: false
+    t.uuid "lounge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lounge_id"], name: "index_events_on_lounge_id"
+  end
+
   create_table "lounges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "phone_number", null: false
@@ -91,5 +107,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_03_020914) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "lounges"
+  add_foreign_key "events", "lounges"
   add_foreign_key "lounges", "users"
 end
