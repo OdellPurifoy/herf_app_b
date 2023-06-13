@@ -3,6 +3,7 @@
 class Lounge < ApplicationRecord
   belongs_to :user
   has_one :address, dependent: :destroy, inverse_of: :lounge
+  has_many :events, dependent: :destroy
   accepts_nested_attributes_for :address
 
   has_one_attached :logo
