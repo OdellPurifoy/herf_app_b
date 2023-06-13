@@ -1,14 +1,17 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :event do
-    event_name { "MyString" }
-    event_type { "MyString" }
-    event_url { "MyString" }
-    zoom_code { "MyString" }
+    event_name { Faker::Marketing.buzzwords } #=> "rubber meets the road", "sprint to the finish line"
+    event_type { 'Live Music' }
+    event_url { Faker::Internet.url }
+    event_date { Date.today + 1.day }
+    zoom_code { '1234567' }
     rsvp_needed { false }
-    maximum_capacity { 1 }
-    start_time { "2023-06-12 20:47:35" }
-    end_time { "2023-06-12 20:47:35" }
+    maximum_capacity { 25 }
+    start_time { Time.zone.now + 1.day }
+    end_time { (Time.zone.now + 1.day) + 4.hours }
     members_only { false }
-    lounge { nil }
+    lounge
   end
 end
