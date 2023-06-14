@@ -3,10 +3,10 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :set_lounge, only: %i[index new create]
-  before_action :authenticate_user, only: %i[new edit create update destroy]
+  before_action :authenticate_user!, only: %i[new edit create update destroy]
 
   def index
-    @events = @lounge.events.order(:created_at).page(params[:page])
+    @events = @lounge.events.order(:created_at)
   end
 
   def show; end
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:event_name, :event_type, :event_url, :zoom_code, :rsvp_needed, :maximum_capacity,
-                                  :start_time, :end_time, :members_only, :lounge_id)
+    params.require(:event).permit(:event_name, :event_date, :event_type, :event_url, :zoom_code, :rsvp_needed, :maximum_capacity,
+                                  :start_time, :end_time, :members_only)
   end
 end
