@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_231345) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_233148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -62,13 +62,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_231345) do
     t.string "zoom_code"
     t.boolean "rsvp_needed", default: false
     t.integer "maximum_capacity"
-    t.datetime "start_time", null: false
-    t.datetime "end_time", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
     t.boolean "members_only", default: false
     t.uuid "lounge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "event_date", null: false
+    t.boolean "is_virtual", default: false
     t.index ["lounge_id"], name: "index_events_on_lounge_id"
   end
 

@@ -155,6 +155,7 @@ GEM
     pg (1.5.3)
     phonelib (0.8.1)
     popper_js (2.11.7)
+    public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -259,6 +260,9 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    validate_url (1.0.15)
+      activemodel (>= 3.0.0)
+      public_suffix
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -297,6 +301,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  validate_url
   web-console
 
 RUBY VERSION

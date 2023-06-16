@@ -42,18 +42,23 @@
   </div>
 
   <div>
+    <%= form.label :is_virtual, style: "display: block" %>
+    <%= form.check_box :is_virtual %>
+  </div>
+
+  <div>
     <%= form.label :maximum_capacity, style: "display: block" %>
     <%= form.number_field :maximum_capacity %>
   </div>
 
   <div>
     <%= form.label :start_time, style: "display: block" %>
-    <%= form.datetime_field :start_time %>
+    <%= form.time_field :start_time %>
   </div>
 
   <div>
     <%= form.label :end_time, style: "display: block" %>
-    <%= form.datetime_field :end_time %>
+    <%= form.time_field :end_time %>
   </div>
 
   <div>
