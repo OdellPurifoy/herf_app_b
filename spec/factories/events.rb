@@ -8,6 +8,7 @@ FactoryBot.define do
     event_date { Date.today + 1.day }
     zoom_code { '1234567' }
     rsvp_needed { false }
+    is_virtual { false }
     maximum_capacity { 25 }
     start_time { Time.zone.now + 1.day }
     end_time { (Time.zone.now + 1.day) + 4.hours }
