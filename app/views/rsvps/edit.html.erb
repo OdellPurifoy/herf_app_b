@@ -6,5 +6,5 @@
 
 <div>
   <%= link_to "Show this rsvp", @rsvp %> |
-  <%= link_to "Back to rsvps", rsvps_path %>
+  <%= link_to "Back to rsvps", event_rsvps_path(@rsvp.event) %>
 </div>
