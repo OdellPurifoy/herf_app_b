@@ -1,31 +1,29 @@
 class RsvpsController < ApplicationController
   before_action :set_rsvp, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[index new create]
+  before_action :authenticate_user!, only: %i[new edit create update destroy]
 
-  # GET /rsvps or /rsvps.json
   def index
-    @rsvps = Rsvp.all
+    @rsvps = @event.rsvps.order(:created_at)
   end
 
-  # GET /rsvps/1 or /rsvps/1.json
   def show
   end
 
-  # GET /rsvps/new
   def new
-    @rsvp = Rsvp.new
+    @rsvp = @event.rsvps.build
   end
 
-  # GET /rsvps/1/edit
   def edit
   end
 
-  # POST /rsvps or /rsvps.json
   def create
-    @rsvp = Rsvp.new(rsvp_params)
+    @rsvp = @event.rsvps.build(rsvp_params)
 
     respond_to do |format|
       if @rsvp.save
-        format.html { redirect_to rsvp_url(@rsvp), notice: "Rsvp was successfully created." }
+        format.turbo_stream { redirect_to rsvp_path(@rsvp) }
+        format.html { redirect_to rsvp_url(@rsvp), notice: "Your RSVP was successfully created." }
         format.json { render :show, status: :created, location: @rsvp }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,10 +32,10 @@ class RsvpsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rsvps/1 or /rsvps/1.json
   def update
     respond_to do |format|
       if @rsvp.update(rsvp_params)
+        format.turbo_stream { redirect_to [@lounge, @event] }
         format.html { redirect_to rsvp_url(@rsvp), notice: "Rsvp was successfully updated." }
         format.json { render :show, status: :ok, location: @rsvp }
       else
@@ -47,24 +45,23 @@ class RsvpsController < ApplicationController
     end
   end
 
-  # DELETE /rsvps/1 or /rsvps/1.json
   def destroy
     @rsvp.destroy
-
-    respond_to do |format|
-      format.html { redirect_to rsvps_url, notice: "Rsvp was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    
+    redirect_to event_rsvps_path(@event), status: :see_other
+    flash[:notice] = 'Event successfully deleted.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_rsvp
       @rsvp = Rsvp.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    def set_event
+      @event = Event.find(params[:event_id])
+    end
+
     def rsvp_params
-      params.require(:rsvp).permit(:first_name, :last_name, :phone_number, :email, :number_of_guests, :attended, :event_id)
+      params.require(:rsvp).permit(:first_name, :last_name, :phone_number, :email, :number_of_guests, :attended)
     end
 end

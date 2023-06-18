@@ -23,6 +23,7 @@
 #
 class Event < ApplicationRecord
   belongs_to :lounge
+  has_many :rsvps, dependent: :destroy
 
   has_one_attached :flyer
   validates_presence_of :event_name, :event_type, :start_time, :end_time, :event_date

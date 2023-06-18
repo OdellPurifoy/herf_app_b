@@ -1,4 +1,4 @@
-<%= form_with(model: rsvp) do |form| %>
+<%= form_with(model: [@event, @rsvp]) do |form| %>
   <% if rsvp.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
@@ -39,11 +39,6 @@
   <div>
     <%= form.label :attended, style: "display: block" %>
     <%= form.check_box :attended %>
-  </div>
-
-  <div>
-    <%= form.label :event_id, style: "display: block" %>
-    <%= form.text_field :event_id %>
   </div>
 
   <div>
