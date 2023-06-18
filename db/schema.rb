@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_18_022036) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_18_024118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -89,6 +89,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_022036) do
     t.index ["user_id"], name: "index_lounges_on_user_id"
   end
 
+  create_table "rsvps", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "phone_number"
+    t.string "email"
+    t.integer "number_of_guests"
+    t.boolean "attended"
+    t.uuid "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_rsvps_on_event_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "integer_id"
     t.string "first_name", null: false
@@ -112,4 +125,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_022036) do
   add_foreign_key "addresses", "lounges"
   add_foreign_key "events", "lounges"
   add_foreign_key "lounges", "users"
+  add_foreign_key "rsvps", "events"
 end
