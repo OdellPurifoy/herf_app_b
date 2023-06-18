@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :rsvps
   resources :lounges do
     resources :events, shallow: true
   end
