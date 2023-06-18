@@ -6,6 +6,7 @@ FactoryBot.define do
     event_type { 'Live Music' }
     event_url { Faker::Internet.url }
     event_date { Date.today + 1.day }
+    event_description { Faker::Lorem.paragraph }
     zoom_code { '1234567' }
     rsvp_needed { false }
     is_virtual { false }

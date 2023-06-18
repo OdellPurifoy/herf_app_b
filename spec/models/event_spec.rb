@@ -5,6 +5,7 @@ RSpec.describe Event, type: :model do
     it { should have_db_column(:event_name).of_type(:string) }
     it { should have_db_column(:end_time).of_type(:time) }
     it { should have_db_column(:event_date).of_type(:date) }
+    it { should have_db_column(:event_description).of_type(:text) }
     it { should have_db_column(:event_type).of_type(:string) }
     it { should have_db_column(:event_url).of_type(:string) }
     it { should have_db_column(:is_virtual).of_type(:boolean) }
@@ -35,6 +36,22 @@ RSpec.describe Event, type: :model do
 
       it 'trigger an invalid url error' do
         expect { event_3 }.to raise_error
+      end
+    end
+  end
+
+  describe 'Event description length validation' do
+    let(:event) { FactoryBot.create(:event, event_description: 'Come join us for our event!') }
+
+    it 'does not raise a length validation error' do
+      expect{event}.to_not raise_error
+    end
+
+    context 'when the event_description is too long' do
+      let(:event) { FactoryBot.create(:event, event_description: Faker::Lorem.paragraph_by_chars(number: 2001)) }
+
+      it 'raises a length validation error' do
+        expect{event}.to raise_error
       end
     end
   end
