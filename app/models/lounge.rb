@@ -1,5 +1,22 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: lounges
+#
+#  id                      :uuid             not null, primary key
+#  name                    :string           not null
+#  phone_number            :string           not null
+#  email                   :string
+#  description             :text             not null
+#  alcohol_served          :boolean          default(FALSE)
+#  food_served             :boolean          default(FALSE)
+#  outside_alcohol_allowed :boolean          default(FALSE)
+#  outside_cigars_allowed  :boolean          default(FALSE)
+#  user_id                 :uuid             not null
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#
 class Lounge < ApplicationRecord
   belongs_to :user
   has_one :address, dependent: :destroy, inverse_of: :lounge
