@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: rsvps
+#
+#  id               :uuid             not null, primary key
+#  first_name       :string           not null
+#  last_name        :string           not null
+#  phone_number     :string
+#  email            :string
+#  number_of_guests :integer
+#  attended         :boolean
+#  event_id         :uuid             not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 require 'faker'
 
 FactoryBot.define do
