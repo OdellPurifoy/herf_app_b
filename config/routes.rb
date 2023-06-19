@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :lounges do
     resources :events, shallow: true
+    resources :memberships, shallow: true
   end
 
   get 'my_lounge', to: 'lounges#my_lounge'
