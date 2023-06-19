@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :memberships
   root 'home#index'
   devise_for :users
 
