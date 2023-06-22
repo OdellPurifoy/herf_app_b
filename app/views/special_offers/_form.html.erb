@@ -1,0 +1,57 @@
+<%= form_with(model: special_offer) do |form| %>
+  <% if special_offer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(special_offer.errors.count, "error") %> prohibited this special_offer from being saved:</h2>
+
+      <ul>
+        <% special_offer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :members_only, style: "display: block" %>
+    <%= form.check_box :members_only %>
+  </div>
+
+  <div>
+    <%= form.label :offer_type, style: "display: block" %>
+    <%= form.text_field :offer_type %>
+  </div>
+
+  <div>
+    <%= form.label :offer_code, style: "display: block" %>
+    <%= form.text_field :offer_code %>
+  </div>
+
+  <div>
+    <%= form.label :lounge_id, style: "display: block" %>
+    <%= form.text_field :lounge_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
