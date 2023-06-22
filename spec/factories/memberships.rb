@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: memberships
+#
+#  id           :uuid             not null, primary key
+#  first_name   :string           not null
+#  last_name    :string           not null
+#  email        :string           not null
+#  phone_number :string
+#  do_not_text  :boolean
+#  lounge_id    :uuid             not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 require 'faker'
 
 FactoryBot.define do
