@@ -1,31 +1,29 @@
+# frozen_string_literal: true
+
 class SpecialOffersController < ApplicationController
-  before_action :set_special_offer, only: %i[ show edit update destroy ]
+  before_action :set_special_offer, only: %i[show edit update destroy]
+  before_action :set_lounge, only: %i[index new create]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
-  # GET /special_offers or /special_offers.json
   def index
-    @special_offers = SpecialOffer.all
+    @special_offers = @lounge.special_offers.order(created_at: :desc)
   end
 
-  # GET /special_offers/1 or /special_offers/1.json
-  def show
-  end
+  def show; end
 
-  # GET /special_offers/new
   def new
-    @special_offer = SpecialOffer.new
+    @special_offer = @lounge.special_offers.build
   end
 
-  # GET /special_offers/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /special_offers or /special_offers.json
   def create
-    @special_offer = SpecialOffer.new(special_offer_params)
+    @special_offer = @lounge.special_offers.build(special_offer_params)
 
     respond_to do |format|
       if @special_offer.save
-        format.html { redirect_to special_offer_url(@special_offer), notice: "Special offer was successfully created." }
+        format.turbo_stream { redirect_to special_offer_path(@special_offer) }
+        format.html { redirect_to special_offer_url(@special_offer), notice: 'Special offer was successfully created.' }
         format.json { render :show, status: :created, location: @special_offer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,11 +32,11 @@ class SpecialOffersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /special_offers/1 or /special_offers/1.json
   def update
     respond_to do |format|
       if @special_offer.update(special_offer_params)
-        format.html { redirect_to special_offer_url(@special_offer), notice: "Special offer was successfully updated." }
+        format.turbo_stream { redirect_to [@lounge, @special_offer] }
+        format.html { redirect_to special_offer_url(@special_offer), notice: 'Special offer was successfully updated.' }
         format.json { render :show, status: :ok, location: @special_offer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -47,24 +45,24 @@ class SpecialOffersController < ApplicationController
     end
   end
 
-  # DELETE /special_offers/1 or /special_offers/1.json
   def destroy
     @special_offer.destroy
-
-    respond_to do |format|
-      format.html { redirect_to special_offers_url, notice: "Special offer was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, status: :see_other
+    flash[:notice] = 'Special offer successfully deleted.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_special_offer
-      @special_offer = SpecialOffer.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def special_offer_params
-      params.require(:special_offer).permit(:name, :start_date, :end_date, :description, :members_only, :offer_type, :offer_code, :lounge_id)
-    end
+  def set_special_offer
+    @special_offer = SpecialOffer.find(params[:id])
+  end
+
+  def set_lounge
+    @lounge = Lounge.find(params[:lounge_id])
+  end
+
+  def special_offer_params
+    params.require(:special_offer).permit(:name, :start_date, :end_date, :description, :members_only, :offer_type,
+                                          :offer_code, :flyer)
+  end
 end
