@@ -6,6 +6,7 @@ ruby "2.7.5"
 # Boostrap for styling
 gem 'bootstrap', '~> 5.3.0.alpha3'
 gem 'jquery-rails'
+gem "font-awesome-sass", "~> 6.1.1"
 
 # Use devise for authentication
 gem 'devise'

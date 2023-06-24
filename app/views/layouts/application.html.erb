@@ -8,13 +8,46 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
   </head>
 
   <body>
     <div class='container'>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= render 'shared/navbar' %>
+      <%# <p class="notice"><%= notice %>
+      <%# <p class="alert"><%= alert %>
+
+      <!-- ======= Header ======= -->
+      <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+          <h1 class="logo me-auto"><a href="/">Herf</a></h1>
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a href="/" class="active">Home</a></li>
+              <% if user_signed_in? && current_user.lounge.present? %>
+                <%= link_to 'My Lounge', my_lounge_path %>
+                <%= link_to 'Profile', edit_user_registration_path %>
+                <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
+              <% elsif user_signed_in? && current_user.lounge.empty? %>
+                <%= link_to 'Create Lounge', new_lounge_path %>
+                <%= link_to 'Profile', edit_user_registration_path %>
+                <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
+              <% elsif user_signed_in? %>
+                <%= link_to 'Profile', edit_user_registration_path %>
+                <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
+              <% else %>
+                <%= link_to 'Log In', new_user_session_path %>
+                <%= link_to 'Sign Up', new_user_registration_path %>
+              <% end %>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
+        </div>
+      </header><!-- End Header -->
       <%= yield %>
     </div>
   </body>
