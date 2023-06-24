@@ -1,0 +1,11 @@
+<h1>Hi, <%= @membership.first_name %></h1>
+
+<%= @event.lounge.name %> has canceled <%= @event.event_name %>!
+
+<p><%= "#{@event.event_name} event, hosted by #{@event.lounge.name} has been canceled." %><br />
+<p>Please contact: <%= "#{@event.lounge.name} at: #{@event.lounge.phone_number} for additional information." %><br />
+<p>Thank you.</p>
+
+<p>
+  <%= @event.event_description %>
+</p>

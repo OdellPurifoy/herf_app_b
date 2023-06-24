@@ -1,0 +1,16 @@
+<h1>Hi, <%= @membership&.first_name %></h1>
+
+<%= @event.lounge.name %> invites you to <%= @event.event_name %>!
+<p>Here are the details</p>
+<p> 
+  <b>Event:</b> <%= "#{@event.event_name}" %><br/>
+  <b>Date:</b> <%= "#{@event.event_date.strftime('%b %e, %Y')}" %><br/>
+  <b>Start Time:</b> <%= "#{@event.start_time.strftime('%l:%M %P')}" %><br/>
+  <b>End Time:</b> <%= "#{@event.end_time.strftime('%l:%M %P')}" %><br/>
+  <b>Location:</b> <%= "#{@event.lounge.address.address_street_1}, #{@event.lounge.address.city}, #{@event.lounge.address.state}, #{@event.lounge.address.zipcode}" %><br/>
+  <b>Phone:</b> <%= "#{@event.lounge.phone_number}" %><br/>
+</p>
+
+<p>
+ <%= @event.event_description %>
+</p>

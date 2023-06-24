@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        notify_members(@event)
         format.turbo_stream { redirect_to event_path(@event) }
         format.html { redirect_to event_url(@event), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
@@ -35,6 +36,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
+        updated_event_members_notification(@event)
         format.turbo_stream { redirect_to [@lounge, @event] }
         format.html { redirect_to event_url(@event), notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
@@ -46,6 +48,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    canceled_event_members_notification(@event)
     @event.destroy
 
     redirect_to root_path, status: :see_other
@@ -65,5 +68,23 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:event_name, :event_date, :event_type, :event_description, :event_url, :zoom_code, :rsvp_needed, :maximum_capacity,
                                   :start_time, :end_time, :members_only, :is_virtual, :flyer)
+  end
+
+  def notify_members(event)
+    event.lounge.memberships.each do |membership|
+      MemberNewEventMailer.with(membership: membership, event: event).notify.deliver_now
+    end
+  end
+
+  def updated_event_members_notification(event)
+    event.lounge.memberships.each do |membership|
+      MemberUpdateEventMailer.with(membership: membership, event: event).notify.deliver_now
+    end
+  end
+
+  def canceled_event_members_notification(event)
+    event.lounge.memberships.each do |membership|
+      MemberCanceledEventMailer.with(membership: membership, event: event).notify.deliver_now
+    end
   end
 end
