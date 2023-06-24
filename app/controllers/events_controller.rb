@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        notify_members(@event)
         format.turbo_stream { redirect_to event_path(@event) }
         format.html { redirect_to event_url(@event), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
@@ -65,5 +66,11 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:event_name, :event_date, :event_type, :event_description, :event_url, :zoom_code, :rsvp_needed, :maximum_capacity,
                                   :start_time, :end_time, :members_only, :is_virtual, :flyer)
+  end
+
+  def notify_members(event)
+    notifiable_members = event.lounge.memberships.where(do_not_text: false).each do |notifiable_member|
+      MemberNewEventMailer.with(membership: notifiable_member, event: event).notify.deliver_now
+    end
   end
 end

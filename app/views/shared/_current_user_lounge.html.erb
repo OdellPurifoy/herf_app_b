@@ -67,3 +67,21 @@
   <strong>Outside cigars allowed:</strong>
   <%= @current_user_lounge&.outside_cigars_allowed %>
 </p>
+
+<% if user_signed_in? %>
+  <div class="d-flex justify-content-around">
+    <%= link_to "Edit Lounge", edit_lounge_path(@current_user.lounge), class: "btn btn-warning" %>
+    <%= link_to "New Event", new_lounge_event_path(@current_user.lounge), class: "btn btn-warning" %>
+    <%= link_to "View Events", lounge_events_path(@current_user.lounge), class: "btn btn-warning" %>
+  </div>
+  <div class="d-flex justify-content-around pt-3">
+    <%= link_to "Memberships", lounge_memberships_path(@current_user.lounge), class: "btn btn-warning" %>
+    <%= link_to "Special Offers", lounge_special_offers_path(@current_user.lounge), class: "btn btn-warning"%>
+    <%= link_to "Delete", lounge_path(@current_user.lounge), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
+<% else %>
+  <div class="d-flex justify-content-between">
+    <%= link_to "View Events", lounge_events_path(@current_user.lounge) %>
+    <%= link_to "Special Offers", lounge_special_offers_path(@current_user.lounge)%>
+  </div>
+<% end %>
