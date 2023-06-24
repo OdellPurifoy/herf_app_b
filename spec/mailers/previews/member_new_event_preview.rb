@@ -5,14 +5,14 @@ class MemberNewEventPreview < ActionMailer::Preview
   def notify
     MemberNewEventPreview.with(membership: membership, event: event).notify
   end
-end
 
-private
+  private
 
-def membership
-  Membership.last
-end
+  def membership
+    Membership.last
+  end
 
-def event
-  Event.last
+  def event
+    Event.last
+  end
 end
