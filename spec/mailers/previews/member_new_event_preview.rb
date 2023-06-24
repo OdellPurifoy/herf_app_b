@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Preview all emails at http://localhost:3000/rails/mailers/member_new_event
 class MemberNewEventPreview < ActionMailer::Preview
   def notify
@@ -6,10 +8,11 @@ class MemberNewEventPreview < ActionMailer::Preview
 end
 
 private
-  def membership
-    Membership.last
-  end
 
-  def event
-    Event.last
-  end
+def membership
+  Membership.last
+end
+
+def event
+  Event.last
+end

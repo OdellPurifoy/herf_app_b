@@ -36,6 +36,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
+        updated_event_members_notification(@event)
         format.turbo_stream { redirect_to [@lounge, @event] }
         format.html { redirect_to event_url(@event), notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
@@ -69,8 +70,14 @@ class EventsController < ApplicationController
   end
 
   def notify_members(event)
-    notifiable_members = event.lounge.memberships.where(do_not_text: false).each do |notifiable_member|
-      MemberNewEventMailer.with(membership: notifiable_member, event: event).notify.deliver_now
+    event.lounge.memberships.each do |membership|
+      MemberNewEventMailer.with(membership: membership, event: event).notify.deliver_now
+    end
+  end
+
+  def updated_event_members_notification(event)
+    event.lounge.memberships.each do |membership|
+      MemberUpdateEventMailer.with(membership: membership, event: event).notify.deliver_now
     end
   end
 end
