@@ -6,7 +6,6 @@ RSpec.describe SpecialOffersController, type: :routing do
   describe 'routing' do
     let(:lounge) { FactoryBot.create(:lounge) }
     let(:special_offer) { FactoryBot.create(:special_offer) }
-    let(:user) { FactoryBot.create(:user) }
 
     it 'routes to #index' do
       expect(get: "/lounges/#{lounge.id}/special_offers").to route_to(controller: 'special_offers',
