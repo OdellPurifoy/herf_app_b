@@ -48,6 +48,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    canceled_event_members_notification(@event)
     @event.destroy
 
     redirect_to root_path, status: :see_other
@@ -78,6 +79,12 @@ class EventsController < ApplicationController
   def updated_event_members_notification(event)
     event.lounge.memberships.each do |membership|
       MemberUpdateEventMailer.with(membership: membership, event: event).notify.deliver_now
+    end
+  end
+
+  def canceled_event_members_notification(event)
+    event.lounge.memberships.each do |membership|
+      MemberCanceledEventMailer.with(membership: membership, event: event).notify.deliver_now
     end
   end
 end
