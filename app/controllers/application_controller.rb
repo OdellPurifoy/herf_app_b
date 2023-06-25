@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def parse_yaml(file)
+    YAML::load(File.open(file))
+  end
+
   protected
 
   def configure_permitted_parameters
