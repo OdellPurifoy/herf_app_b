@@ -1,12 +1,25 @@
 <p style="color: green"><%= notice %></p>
+<div class='container' id='event_index'>
+  <section id="services" class="services">
+    <div class="d-flex bd-highlight">
+      <div class="p-2 flex-grow-1 bd-highlight"><h3>Events</h3></div>
+      <%= link_to "Back to lounge", lounge_path(@events.first.lounge), class: 'event_back_to_lounge_link' %>
+    </div>
 
-<h1>Events</h1>
-
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
+    <div id="events">
+      <% @events.each do |event| %>
+        <div class="row pb-5">
+          <%= render event %>
+          <p>
+            <% if current_user.id == event.lounge.user_id %>
+              <%= link_to "Edit", edit_event_path(event), id: 'edit_event_button' %>
+            <% end %>
+            <% if event.rsvp_needed? %>
+              <%= link_to "RSVP Here", new_event_rsvp_path(event), id: 'edit_event_button' %>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <section id="services" class="services">
 </div>
