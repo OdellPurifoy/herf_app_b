@@ -3827,6 +3827,16 @@ body {
     color: $primary;
   }
 
-  #lounge {
+  #lounge, #show_lounge {
     padding-top: 150px;
+  }
+
+  .delete-lounge {
+    text-decoration: none;
+    border: none;
+    background: none;
+    font-family: $font-secondary;
+    font-size: 15px; 
+    font-weight: 500;
+    color: $secondary;
   }

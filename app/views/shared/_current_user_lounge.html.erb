@@ -20,6 +20,9 @@
         <li class="nav-item">
           <%= link_to "Special Offers", lounge_special_offers_path(@current_user.lounge) %>
         </li>
+        <li class="nav-item">
+          <%= button_to "Delete Lounge", @current_user.lounge, class: 'delete-lounge', method: :delete %>
+        </li>
       </ul>
       <span class="navbar-text">
         <%= link_to "Home", root_path %>
