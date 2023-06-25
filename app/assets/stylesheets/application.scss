@@ -1287,8 +1287,8 @@ section {
   .faq  {
   
     .faq-item {
-      margin: 20px 0;
-      padding: 20px 0;
+      margin: 10px 0;
+      padding: 10px 0;
       border-bottom: 1px solid lighten($secondary, 64);
   
       i {
@@ -1804,7 +1804,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0 10px 30px;
+    padding: 10px 10px 10px 10px;
     font-family: "Poppins", sans-serif;
     font-size: 15px;
     font-weight: 500;
@@ -2200,7 +2200,7 @@ body {
   # Sections General
   --------------------------------------------------------------*/
   section {
-    padding: 60px 0;
+    padding: 20px 0;
     overflow: hidden;
   }
   
@@ -3805,7 +3805,7 @@ body {
     color: white;
   }
 
-  #pricing-input {
+  #pricing-input, #logout {
     background-color: $primary;
     color: white;
     padding: 8px 25px;
@@ -3818,7 +3818,7 @@ body {
       background: darken(#a85c44, 8);
     }
   }
-
+  
   #price-amount {
     color: #a85c44;
   }

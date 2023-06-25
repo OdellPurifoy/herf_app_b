@@ -17,7 +17,7 @@
   </head>
 
   <body>
-    <div class='container'>
+    <div class='container-fluid'>
       <%# <p class="notice"><%= notice %>
       <%# <p class="alert"><%= alert %>
 
@@ -31,14 +31,14 @@
               <% if user_signed_in? && current_user.lounge.present? %>
                 <%= link_to 'My Lounge', my_lounge_path %>
                 <%= link_to 'Profile', edit_user_registration_path %>
-                <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
+                <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete %>
               <% elsif user_signed_in? && current_user.lounge.empty? %>
                 <%= link_to 'Create Lounge', new_lounge_path %>
                 <%= link_to 'Profile', edit_user_registration_path %>
-                <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
+                <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete %>
               <% elsif user_signed_in? %>
                 <%= link_to 'Profile', edit_user_registration_path %>
-                <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
+                <%= button_to 'Log Out', destroy_user_session_path, id: 'logout',  method: :delete %>
               <% else %>
                 <%= link_to 'Log In', new_user_session_path %>
                 <%= link_to 'Sign Up', new_user_registration_path %>
@@ -51,4 +51,44 @@
       <%= yield %>
     </div>
   </body>
+
+  <footer id="footer" class="mt-5">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>Herf</h3>
+                <strong>Phone:</strong> +1 000.000.0000 <br>
+                <strong>Email:</strong> herf@gmail.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+            </ul>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Herf</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
 </html>
