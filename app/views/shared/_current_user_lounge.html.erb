@@ -1,87 +1,123 @@
-<p>
-  <strong>Name:</strong>
-  <%= @current_user_lounge&.name  %>
-</p>
-
-<p>
-  <strong>Phone number:</strong>
-  <%= @current_user_lounge&.phone_number %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @current_user_lounge&.email %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @current_user_lounge&.email %>
-</p>
-
-<p>
-  <strong>Address Street 1:</strong>
-  <%= @current_user_lounge&.address&.address_street_1 %>
-</p>
-
-<p>
-  <strong>Address Street 2:</strong>
-  <%= @current_user_lounge&.address&.address_street_2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @current_user_lounge&.address&.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @current_user_lounge&.address&.state %>
-</p>
-  
-<p>
-  <strong>Zip Code:</strong>
-  <%= @current_user_lounge&.address&.zipcode %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @current_user_lounge&.description %>
-</p>
-
-<p>
-  <strong>Alcohol served:</strong>
-  <%= @current_user_lounge&.alcohol_served %>
-</p>
-
-<p>
-  <strong>Food served:</strong>
-  <%= @current_user_lounge&.food_served %>
-</p>
-
-<p>
-  <strong>Outside alcohol allowed:</strong>
-  <%= @current_user_lounge&.outside_alcohol_allowed %>
-</p>
-
-<p>
-  <strong>Outside cigars allowed:</strong>
-  <%= @current_user_lounge&.outside_cigars_allowed %>
-</p>
-
-<% if user_signed_in? %>
-  <div class="d-flex justify-content-around">
-    <%= link_to "Edit Lounge", edit_lounge_path(@current_user.lounge), class: "btn btn-warning" %>
-    <%= link_to "New Event", new_lounge_event_path(@current_user.lounge), class: "btn btn-warning" %>
-    <%= link_to "View Events", lounge_events_path(@current_user.lounge), class: "btn btn-warning" %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Edit Lounge", edit_lounge_path(@current_user.lounge) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "New Event", new_lounge_event_path(@current_user.lounge) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "View Events", lounge_events_path(@current_user.lounge) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Memberships", lounge_memberships_path(@current_user.lounge) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Special Offers", lounge_special_offers_path(@current_user.lounge) %>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        <%= link_to "Home", root_path %>
+      </span>
+    </div>
   </div>
-  <div class="d-flex justify-content-around pt-3">
-    <%= link_to "Memberships", lounge_memberships_path(@current_user.lounge), class: "btn btn-warning" %>
-    <%= link_to "Special Offers", lounge_special_offers_path(@current_user.lounge), class: "btn btn-warning"%>
-    <%= link_to "Delete", lounge_path(@current_user.lounge), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+</nav>
+
+<section id="services" class="services">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="icon-box">
+          <i class="bi bi-shop"></i>
+          <h4><%= @current_user_lounge&.name %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-phone"></i>      
+          <h4><%= @current_user_lounge&.phone_number %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-envelope-at"></i>
+          <h4><%= @current_user_lounge&.email %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-geo-alt"></i>
+          <h4>      
+            <%= @current_user_lounge&.address&.address_street_1 %>,
+            <%= @current_user_lounge&.address&.address_street_2 %>
+            <%= @current_user_lounge&.address&.city %>,
+            <%= @current_user_lounge&.address&.state %>
+            <%= @current_user_lounge&.address&.zipcode %>
+          </h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-info-circle"></i>
+          <h4><%= @current_user_lounge&.description %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-cup-straw"></i>
+          <h4><%= @current_user_lounge&.alcohol_served ? 'Alcohol served' : 'Alcohol not served' %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-egg-fried"></i>
+          <h4><%= @current_user_lounge&.food_served ? 'Food served' : 'Food not served' %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-cup-straw"></i>
+          <h4><%= @current_user_lounge&.outside_alcohol_allowed ? 'Outside alcohol allowed' : 'Outside alcohol not allowed' %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-fire"></i>
+          <h4><%= @current_user_lounge&.outside_cigars_allowed ? 'Outside cigars allowed' : 'Outside cigard not allowed' %></h4>
+        </div>
+      </div>
+    </div>
+
   </div>
-<% else %>
-  <div class="d-flex justify-content-between">
-    <%= link_to "View Events", lounge_events_path(@current_user.lounge) %>
-    <%= link_to "Special Offers", lounge_special_offers_path(@current_user.lounge)%>
+</section><!-- End Services Section -->
+
+<section id="services" class="services">
+  <h3>Images</h3>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://media.istockphoto.com/id/468917332/photo/cool-man-smoking-cigar-i-the-night.jpg?s=2048x2048&w=is&k=20&c=SBtXNXp84ONJ_o9hI0M588DLf9eWGf_VNt_e1BfXcoc=" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://media.istockphoto.com/id/1033037396/photo/cigars-on-wooden-background-copy-space.jpg?s=2048x2048&w=is&k=20&c=VTulaQFNflbeAXCU27vK2WSxmTQvR7OmZw32F3uA3yc=" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://media.istockphoto.com/id/520491956/photo/whiskey-with-smoking-cigar.jpg?s=2048x2048&w=is&k=20&c=4LvQ48pJlJmF1KVi2EoC6McKyT3hJA5sC0meobYHhqc=" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-<% end %>
+</section>
