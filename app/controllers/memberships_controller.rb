@@ -6,7 +6,11 @@ class MembershipsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @memberships = @lounge.memberships.order(:created_at)
+    @memberships = if params[:search].present?
+                     Membership.search(params[:search])
+                   else
+                     @lounge.memberships.order(:created_at).page(params[:page])
+                   end
   end
 
   def show; end
@@ -51,6 +55,22 @@ class MembershipsController < ApplicationController
     @membership.destroy
     redirect_to "/lounges/#{@lounge..id}/memberships", status: :see_other
     flash[:notice] = 'Membership successfully deleted.'
+  end
+
+  def activate
+    @membership = Membership.find(params[:id])
+    @lounge = @membership.lounge
+    @membership.update!(active: true)
+    redirect_to lounge_memberships_path(@lounge)
+    flash[:notice] = 'Membership activated'
+  end
+
+  def deactivate
+    @membership = Membership.find(params[:id])
+    @lounge = @membership.lounge
+    @membership.update!(active: false)
+    redirect_to lounge_memberships_path(@lounge)
+    flash[:notice] = 'Membership deactivated'
   end
 
   private
