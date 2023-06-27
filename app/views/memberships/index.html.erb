@@ -1,14 +1,55 @@
 <p style="color: green"><%= notice %></p>
+  <div class="container" id="portfolio-details">
+    <h3>Total Memberships: <%= @memberships.page(1).per(10).total_count %></h3>
 
-<h1>Memberships</h1>
+    <div class="d-flex bd-highlight mb-3">
+      <div class="p-2 bd-highlight">
+        <%= form_tag(lounge_memberships_path(@lounge), method: :get) do %>
+          <%= text_field_tag(:search, params[:search], placeholder: 'Email') %>
+          <%= submit_tag("Search" , class: "btn btn-warning") %>
+        <% end %>
+      </div>
 
-<div id="memberships">
-  <% @memberships.each do |membership| %>
-    <%= render membership %>
-    <p>
-      <%= link_to "Show this membership", membership %>
-    </p>
-  <% end %>
-</div>
+      <div class="ms-auto p-2 bd-highlight">
+        <%= link_to "New Membership", new_lounge_membership_path(@lounge), class: 'btn btn-warning' %>
+      </div>
+    </div>
 
-<%= link_to "New membership", new_lounge_membership_path(@lounge) %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Active</th>
+          <th scope="col">Activate/Deactivate</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @memberships.each do |membership| %>
+          <tr>
+            <td><%= membership.first_name %></td>
+            <td><%= membership.last_name %></td>
+            <td><%= membership.email %></td>
+            <td><%= membership.phone_number %></td>
+            <td><%= membership.active ? 'Yes' : 'No' %></td>
+            <% if membership.active? %>
+              <td><%= button_to "Deactivate", "/memberships/#{membership.id}/deactivate", method: :post, class: "btn btn-warning" %></td>
+            <% else %>
+              <td><%= button_to "Activate", "/memberships/#{membership.id}/activate", method: :post, class: "btn btn-success" %></td>
+            <% end %>
+            <td><%= button_to "Edit", "/memberships/#{membership.id}/edit", method: :get, class: "btn btn-secondary" %></td>
+            <td><%= link_to "Delete", membership_path(membership), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+    <div class="d-flex justify-content-center">
+      <% if @memberships.count > 1 %>
+        <%= paginate @memberships %>
+      <% end %>
+  </div>
