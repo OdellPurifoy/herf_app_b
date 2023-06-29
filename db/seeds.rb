@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
-lounge = Lounge.find("ddc1ccd4-b2da-46ae-9899-c924a52f7dbd")
+lounge = Lounge.find("ed50e814-c70d-4e5d-96cb-70026cbc2a8d")
 
 20.times do
   Membership.create!(
