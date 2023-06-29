@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :event_type, style: "display: block" %>
-    <%= form.text_field :event_type %>
+    <%= form.select :event_type, Event::TYPES %>
   </div>
 
   <div>
@@ -69,6 +69,18 @@
   <div>
     <%= form.label :members_only, style: "display: block" %>
     <%= form.check_box :members_only %>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <% if event.flyer.present? %>
+        <div id="<%= dom_id(event, :flyer) %>">
+          <%= image_tag event.flyer, size: "300x300" %>
+            <%= link_to "Remove flyer", event_event_flyer_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      <%= form.file_field :flyer %>
+    </div>
   </div>
 
   <div>
