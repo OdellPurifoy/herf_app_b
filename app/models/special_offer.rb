@@ -24,4 +24,10 @@ class SpecialOffer < ApplicationRecord
   has_one_attached :flyer
 
   validates_presence_of :name, :start_date, :end_date, :description, :offer_type
+
+  paginates_per 10
+
+  def self.search(search)
+    where("name LIKE ?", search + "%") if search
+  end
 end

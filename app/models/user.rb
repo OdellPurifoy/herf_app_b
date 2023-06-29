@@ -31,6 +31,10 @@ class User < ApplicationRecord
   validates :phone_number, phone: { possible: true, allow_blank: true }
   validate :user_eighteen_or_older
 
+  def subscribed?
+    true
+  end
+
   private
 
   def user_eighteen_or_older

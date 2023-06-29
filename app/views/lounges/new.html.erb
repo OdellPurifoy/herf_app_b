@@ -1,9 +1,13 @@
+<div class='container', id='edit_lounge'>
+
 <h1>New lounge</h1>
 
-<%= render "form", lounge: @lounge %>
-
-<br>
-
+  <div class='mt-5'>
+    <%= render "form", lounge: @lounge %>
+  </div>
+  
+  <br>
 <div>
   <%= link_to "Back to lounges", lounges_path %>
+</div>
 </div>

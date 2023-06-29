@@ -6,7 +6,11 @@ class SpecialOffersController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def index
-    @special_offers = @lounge.special_offers.order(created_at: :desc)
+    @special_offers = if params[:search].present?
+      SpecialOffer.search(params[:search]).order(created_at: :desc).page(params[:page])
+    else
+      @lounge.special_offers.order(created_at: :desc).page(params[:page])
+    end
   end
 
   def show; end
