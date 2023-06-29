@@ -2,9 +2,11 @@
 
 Rails.application.routes.draw do
   root 'home#index'
+
   devise_for :users
   
   resources :events do
+    resources :event_flyers, only: [:destroy]
     resources :rsvps, shallow: true
   end
   

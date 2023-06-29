@@ -8,6 +8,9 @@ gem 'bootstrap', '~> 5.3.0.alpha3'
 gem 'jquery-rails'
 gem "font-awesome-sass", "~> 6.1.1"
 
+# Use to display list of cities
+gem 'city-state', '~> 0.1.0'
+
 # Use devise for authentication
 gem 'devise'
 

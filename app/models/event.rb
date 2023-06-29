@@ -22,6 +22,8 @@
 #  event_description :text
 #
 class Event < ApplicationRecord
+  TYPES = ['Live Music', 'Whiskey Tasting', 'Cigar Brand Event', 'Holiday', 'Sports', 'Virtual'].freeze
+
   belongs_to :lounge
   has_many :rsvps, dependent: :destroy
 

@@ -1,35 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to "Edit Lounge", edit_lounge_path(@current_user.lounge) %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "New Event", new_lounge_event_path(@current_user.lounge) %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "View Events", lounge_events_path(@current_user.lounge) %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Memberships", lounge_memberships_path(@current_user.lounge) %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Special Offers", lounge_special_offers_path(@current_user.lounge) %>
-        </li>
-        <li class="nav-item">
-          <%= button_to "Delete Lounge", @current_user.lounge, class: 'delete-lounge', method: :delete %>
-        </li>
-      </ul>
-      <span class="navbar-text">
-        <%= link_to "Home", root_path %>
-      </span>
-    </div>
-  </div>
-</nav>
+<%= render 'shared/lounge_owner_navbar' %>
 
 <section id="services" class="services">
   <div class="container">
