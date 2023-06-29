@@ -3805,7 +3805,7 @@ body {
     color: white;
   }
 
-  #pricing-input, #logout, #edit_event_button {
+  #pricing-input, #logout, #edit_event_button, #update_lounge_button {
     background-color: $primary;
     color: white;
     padding: 8px 25px;
@@ -3827,7 +3827,7 @@ body {
     color: $primary;
   }
 
-  #lounge, #show_lounge, #event_index {
+  #lounge, #show_lounge, #event_index, #edit_lounge {
     padding-top: 150px;
   }
 
