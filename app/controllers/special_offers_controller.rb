@@ -7,10 +7,10 @@ class SpecialOffersController < ApplicationController
 
   def index
     @special_offers = if params[:search].present?
-      SpecialOffer.search(params[:search]).order(created_at: :desc).page(params[:page])
-    else
-      @lounge.special_offers.order(created_at: :desc).page(params[:page])
-    end
+                        SpecialOffer.search(params[:search]).order(created_at: :desc).page(params[:page])
+                      else
+                        @lounge.special_offers.order(created_at: :desc).page(params[:page])
+                      end
   end
 
   def show; end
