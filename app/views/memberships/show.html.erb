@@ -1,10 +1,18 @@
 <p style="color: green"><%= notice %></p>
+<div class='container' id='edit_membership'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <%= render @membership %>
 
-<%= render @membership %>
+      <div>
+        <%= link_to "Edit Membership", edit_membership_path(@membership) %> |
+        <%= link_to "Back to Memberships", lounge_memberships_path(@membership.lounge) %>
 
-<div>
-  <%= link_to "Edit this membership", edit_membership_path(@membership) %> |
-  <%= link_to "Back to memberships", lounge_events_path(@membership.lounge) %>
-
-  <%= button_to "Destroy this membership", @membership, method: :delete %>
+        <%= button_to "Delete Membership", @membership, class: 'btn btn-warning mt-3', method: :delete %>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+

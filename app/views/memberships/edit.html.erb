@@ -1,10 +1,16 @@
-<h1>Editing membership</h1>
+<div class='container' id='edit_membership'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <h3 class='mb-3'>Editing Membership</h3>
 
-<%= render "form", membership: @membership %>
+      <%= render "form", membership: @membership %>
 
-<br>
+      <br>
 
-<div>
-  <%= link_to "Show this membership", @membership %> |
-  <%= link_to "Back to memberships", lounge_events_path(@membership.lounge) %>
+      <div>
+        <%= link_to "Show this membership", @membership %> |
+        <%= link_to "Back to memberships", lounge_memberships_path(@membership.lounge) %>
+      </div>
+    </div>
+  </div>
 </div>
