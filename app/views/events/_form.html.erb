@@ -11,79 +11,96 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :event_name, style: "display: block" %>
-    <%= form.text_field :event_name %>
-  </div>
+  <div class='d-flex justify-content-around'>
+    <div>
+      <label for="event-name" class="form-label">Event Name</label>
+      <div class="input-group mb-3">
+        <%= form.text_field :event_name, class: 'form-control', style: 'width: 400px' %>
+      </div>
 
-  <div>
-    <%= form.label :event_type, style: "display: block" %>
-    <%= form.select :event_type, Event::TYPES %>
-  </div>
+      <label for="event-type" class="form-label">Event Type</label>
+      <select name="event[event_type]" class="form-select mb-3" id="event_event_type"><option value="Live Music">Live Music</option>
+      <option value="Whiskey Tasting">Whiskey Tasting</option>
+      <option value="Cigar Brand Event">Cigar Brand Event</option>
+      <option value="Holiday">Holiday</option>
+      <option value="Sports">Sports</option>
+      <option value="Virtual">Virtual</option></select>
 
-  <div>
-    <%= form.label :event_date, style: "display: block" %>
-    <%= form.date_field :event_date, min: Date.today %>
-  </div>
+      <label for="event-date" class="form-label">Event Date</label>
+      <div class="input-group mb-3">
+        <%= form.date_field :event_date, min: Date.today, class: 'form-select' %>
+      </div>
+      
+      <label for="event-url" class="form-label">Event Url</label>
+      <div class="input-group mb-3">
+        <%= form.text_field :event_url, class: 'form-control' %>
+      </div>
 
-  <div>
-    <%= form.label :event_description, style: "display: block" %>
-    <%= form.text_area :event_description %>
-  </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Details</span>
+        <%= form.text_area :event_description, class: 'form-control', style: 'height: 200px' %>
+      </div>
 
-  <div>
-    <%= form.label :event_url, style: "display: block" %>
-    <%= form.text_field :event_url %>
-  </div>
-
-  <div>
-    <%= form.label :zoom_code, style: "display: block" %>
-    <%= form.text_field :zoom_code %>
-  </div>
-
-  <div>
-    <%= form.label :rsvp_needed, style: "display: block" %>
-    <%= form.check_box :rsvp_needed %>
-  </div>
-
-  <div>
-    <%= form.label :is_virtual, style: "display: block" %>
-    <%= form.check_box :is_virtual %>
-  </div>
-
-  <div>
-    <%= form.label :maximum_capacity, style: "display: block" %>
-    <%= form.number_field :maximum_capacity %>
-  </div>
-
-  <div>
-    <%= form.label :start_time, style: "display: block" %>
-    <%= form.time_field :start_time %>
-  </div>
-
-  <div>
-    <%= form.label :end_time, style: "display: block" %>
-    <%= form.time_field :end_time %>
-  </div>
-
-  <div>
-    <%= form.label :members_only, style: "display: block" %>
-    <%= form.check_box :members_only %>
-  </div>
-
-  <div class="field">
-    <div class="control">
-      <% if event.flyer.present? %>
-        <div id="<%= dom_id(event, :flyer) %>">
-          <%= image_tag event.flyer, size: "300x300" %>
-            <%= link_to "Remove flyer", event_event_flyer_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-          </div>
-        <% end %>
-      <%= form.file_field :flyer %>
     </div>
-  </div>
 
-  <div>
-    <%= form.submit %>
+    <div>
+      <label for="event-zoom-code" class="form-label">Zoom Code</label>
+      <div class="input-group mb-3">
+        <%= form.text_field :zoom_code, class: 'form-control' %>
+      </div>
+
+      <label for="event-max-capacity" class="form-label">Maximum Capacity</label>
+      <div class="input-group mb-3">
+        <%= form.number_field :maximum_capacity, class: 'form-control' %>
+      </div>
+
+
+      <label for="event-start-time" class="form-label">Start Time</label>
+      <div class="input-group mb-3">
+        <%= form.time_field :start_time, class: 'form-control' %>
+      </div>
+
+      <label for="event-end-time" class="form-label">End Time</label>
+      <div class="input-group mb-3">
+        <%= form.time_field :end_time, class: 'form-control' %>
+      </div>
+
+      <div class="form-check">
+        <%= form.check_box :rsvp_needed, class: 'form-check-input' %>
+        <label class="form-check-label" for="flexRadioDefault1">
+          RSVP Needed? <span class="text-muted">(check if yes)</span>
+        </label>
+      </div>
+
+      <div class="form-check">
+        <%= form.check_box :is_virtual, class: 'form-check-input' %>
+        <label class="form-check-label" for="flexRadioDefault1">
+          Virtual Event? <span class="text-muted">(check if yes)</span>
+        </label>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= form.check_box :members_only, class: 'form-check-input' %>
+        <label class="form-check-label" for="flexRadioDefault1">
+          Members Only? <span class="text-muted">(check if yes)</span>
+        </label>
+      </div>
+
+      <div class="input-group mb-3">
+        <% if event.flyer.present? %>
+          <div id="<%= dom_id(event, :flyer) %>">
+            <%= image_tag event.flyer, size: "300x300" %>
+              <%= link_to "Remove flyer", event_event_flyer_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </div>
+          <% end %>
+        <label class="input-group-text" for="inputGroupFile01">Flyer</label>
+        <%= form.file_field :flyer, class: 'form-control' %>
+      </div>
+
+      <div>
+        <%= form.submit id:'update_lounge_button' %>
+      </div>
+
+    </div>
   </div>
 <% end %>
