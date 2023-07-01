@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit create update destroy]
 
   def index
-    @events = @lounge.events.order(:created_at).page(params[:page])
+    @events = @lounge.events.order(created_at: :desc).page(params[:page])
   end
 
   def show; end
@@ -71,19 +71,19 @@ class EventsController < ApplicationController
   end
 
   def notify_members(event)
-    event.lounge.memberships.each do |membership|
+    event.lounge.memberships.active.each do |membership|
       MemberNewEventMailer.with(membership: membership, event: event).notify.deliver_now
     end
   end
 
   def updated_event_members_notification(event)
-    event.lounge.memberships.each do |membership|
+    event.lounge.memberships.active.each do |membership|
       MemberUpdateEventMailer.with(membership: membership, event: event).notify.deliver_now
     end
   end
 
   def canceled_event_members_notification(event)
-    event.lounge.memberships.each do |membership|
+    event.lounge.memberships.active.each do |membership|
       MemberCanceledEventMailer.with(membership: membership, event: event).notify.deliver_now
     end
   end
