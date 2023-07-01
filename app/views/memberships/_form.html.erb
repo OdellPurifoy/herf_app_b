@@ -11,32 +11,34 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :first_name, style: "display: block" %>
-    <%= form.text_field :first_name %>
+  <label for="membershio-first-name" class="form-label">First Name</label>
+  <div class="input-group mb-3">
+    <%= form.text_field :first_name, class: 'form-control', style: 'width: 400px' %>
+  </div>
+
+  <label for="membership-last-name" class="form-label">Last Name</label>
+  <div class="input-group mb-3">
+    <%= form.text_field :last_name, class: 'form-control' %>
+  </div>
+
+  <label for="membership-email" class="form-label">Email</label>
+  <div class="input-group mb-3">
+    <%= form.email_field :email, class: 'form-control' %>
+  </div>
+
+  <label for="membership-phone-number" class="form-label">Phone Number</label>
+    <div class="input-group mb-3">
+    <%= form.text_field :phone_number, class: 'form-control' %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :do_not_text, class: 'form-check-input' %>
+    <label class="form-check-label" for="flexRadioDefault1">
+      Do not text? <span class="text-muted">(check if yes)</span>
+    </label>
   </div>
 
   <div>
-    <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :phone_number, style: "display: block" %>
-    <%= form.text_field :phone_number %>
-  </div>
-
-  <div>
-    <%= form.label :do_not_text, style: "display: block" %>
-    <%= form.check_box :do_not_text %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit id:'update_lounge_button' %>
   </div>
 <% end %>
