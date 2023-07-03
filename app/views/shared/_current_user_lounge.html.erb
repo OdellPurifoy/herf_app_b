@@ -6,7 +6,12 @@
     <div class="row">
       <div class="col-md-6">
         <div class="icon-box">
-          <i class="bi bi-shop"></i>
+          <% if @current_user_lounge.logo.present? %>
+            <%= image_tag @current_user_lounge.logo, class: 'rounded-circle', size: "100x100" %><br />
+          <% else %>
+            <i class="bi bi-shop"></i>
+          <% end %>
+          <br/>
           <h4><%= @current_user_lounge&.name %></h4>
         </div>
       </div>

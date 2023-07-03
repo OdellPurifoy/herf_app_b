@@ -1,10 +1,15 @@
 <p style="color: green"><%= notice %></p>
+<div class='container' id='edit_membership'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <%= render @special_offer %>
 
-<%= render @special_offer %>
+      <div>
+        <%= link_to "Edit Special Offer", edit_special_offer_path(@special_offer) %> |
+        <%= link_to "Back to special offers", lounge_special_offers_path(@special_offer.lounge) %>
 
-<div>
-  <%= link_to "Edit this special offer", edit_special_offer_path(@special_offer) %> |
-  <%= link_to "Back to special offers", lounge_special_offers_path(@special_offer.lounge) %>
-
-  <%= button_to "Destroy this special offer", @special_offer, method: :delete %>
+        <%= button_to "Delete Special Offer", @special_offer, class: 'btn btn-warning mt-3', method: :delete %>
+      </div>
+    </div>
+  </div>
 </div>
