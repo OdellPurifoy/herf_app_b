@@ -11,47 +11,57 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <label for="special-offer-name" class="form-label">Name</label>
+  <div class="input-group mb-3">
+    <%= form.text_field :name, class: 'form-control', style: 'width: 400px' %>
+  </div>
+
+  <label for="special-offer-start-date" class="form-label">Start Date</label>
+  <div class="input-group mb-3">
+    <%= form.date_field :start_date, class: 'form-control' %>
+  </div>
+
+  <label for="special-offer-end-date" class="form-label">End Date</label>
+  <div class="input-group mb-3">
+    <%= form.date_field :end_date, class: 'form-control' %>
+  </div>
+
+  <label for="special-offer-end-date" class="form-label">Offer Type</label>
+  <select name="special_offer[offer_type]" class="form-select mb-3" id="special_offer_offer_type"><option selected="selected" value="BOGO (Buy one, get one)">BOGO (Buy one, get one)</option>
+  <option value="Holiday">Holiday</option>
+  <option value="Brand Discount">Brand Discount</option>
+  <option value="General Discont">General Discont</option>
+  </select>
+
+  <label for="special-offer-end-date" class="form-label">Offer Code (optional)</label>
+  <div class="input-group mb-3">
+    <%= form.text_field :offer_code, class: 'form-control' %>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Description</span>
+    <%= form.text_area :description, class: 'form-control', style: 'height: 200px' %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :members_only, class: 'form-check-input' %>
+    <label class="form-check-label" for="flexRadioDefault1">
+      Members Only? <span class="text-muted">(check if yes)</span>
+    </label>
+  </div>
+
+  <div class="input-group mb-3">
+    <% if special_offer.flyer.present? %>
+      <div id="<%= dom_id(special_offer, :flyer) %>">
+        <%= image_tag special_offer.flyer, size: "150x150" %>
+          <%= link_to "Remove flyer", special_offer_special_offer_flyer_path(@special_offer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        </div>
+      <% end %>
+    <label class="input-group-text" for="inputGroupFile01">Flyer</label>
+    <%= form.file_field :flyer, class: 'form-control' %>
   </div>
 
   <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :members_only, style: "display: block" %>
-    <%= form.check_box :members_only %>
-  </div>
-
-  <div>
-    <%= form.label :offer_type, style: "display: block" %>
-    <%= form.text_field :offer_type %>
-  </div>
-
-  <div>
-    <%= form.label :offer_code, style: "display: block" %>
-    <%= form.text_field :offer_code %>
-  </div>
-
-  <div>
-    <%= form.label :flyer, style: "display: block" %>
-    <%= form.file_field :flyer %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit id:'update_lounge_button' %>
   </div>
 <% end %>

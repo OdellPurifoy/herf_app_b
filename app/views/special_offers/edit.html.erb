@@ -1,10 +1,17 @@
-<h1>Editing special offer</h1>
+<div class='container' id='edit_membership'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+    <h3 class='mb-3'>Editing Special Offer</h3>
 
-<%= render "form", special_offer: @special_offer %>
+      <%= render "form", special_offer: @special_offer %>
 
-<br>
+      <br>
 
-<div>
-  <%= link_to "Show this special offer", @special_offer %> |
-  <%= link_to "Back to special offers", lounge_special_offers_path(@special_offer.lounge) %>
+      <div>
+        <%= link_to "Show this special offer", @special_offer %> |
+        <%= link_to "Back to special offers", lounge_special_offers_path(@special_offer.lounge) %>
+      </div>
+    </div>
+  </div>
 </div>
+
