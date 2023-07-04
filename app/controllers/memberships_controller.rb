@@ -40,6 +40,7 @@ class MembershipsController < ApplicationController
   def update
     respond_to do |format|
       if @membership.update(membership_params)
+        updated_membership_email(@membership)
         format.turbo_stream { redirect_to [@lounge, @membership] }
         format.html { redirect_to membership_url(@membership), notice: 'Membership was successfully updated.' }
         format.json { render :show, status: :ok, location: @membership }
@@ -53,8 +54,10 @@ class MembershipsController < ApplicationController
   def destroy
     @lounge = @membership.lounge
 
+    canceled_membership_email(@membership)
+
     @membership.destroy
-    redirect_to "/lounges/#{@lounge..id}/memberships", status: :see_other
+    redirect_to "/lounges/#{@lounge.id}/memberships", status: :see_other
     flash[:notice] = 'Membership successfully deleted.'
   end
 
@@ -90,5 +93,13 @@ class MembershipsController < ApplicationController
 
   def new_member_welcome_email(membership)
     NewMemberWelcomeMailer.with(membership: membership, lounge: membership.lounge).send_welcome_email.deliver_now
+  end
+
+  def updated_membership_email(membership)
+    UpdateMembershipMailer.with(membership: membership, lounge: membership.lounge).notify.deliver_now
+  end
+
+  def canceled_membership_email(membership)
+    DeletedMembershipMailer.with(membership: membership, lounge: membership.lounge).notify.deliver_now
   end
 end
