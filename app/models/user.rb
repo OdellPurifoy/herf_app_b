@@ -33,7 +33,7 @@ class User < ApplicationRecord
   validate :user_eighteen_or_older
 
   def subscribed?
-    true
+    subscriptions.where(status: 'active').any?
   end
 
   private
