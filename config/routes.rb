@@ -30,4 +30,11 @@ Rails.application.routes.draw do
   resources :subscriptions
 
   get 'my_lounge', to: 'lounges#my_lounge'
+  get 'pricing', to: 'checkouts#price_listing'
+  get 'success', to: 'checkouts#success'
+
+  post 'create-monthly-email-checkout-session', to: 'checkouts#create_monthly_email_checkout_session'
+  post 'create-monthly-email-and-text-checkout-session', to: 'checkouts#create_monthly_email_and_text_checkout_session'
+  post 'create-yearly-email-checkout-session', to: 'checkouts#create_yearly_email_checkout_session'
+  post 'create-yearly-email-and-text-checkout-session', to: 'checkouts#create_yearly_email_and_text_checkout_session'
 end
