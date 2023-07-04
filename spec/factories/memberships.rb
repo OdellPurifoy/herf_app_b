@@ -11,6 +11,7 @@
 #  lounge_id    :uuid             not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  active       :boolean          default(TRUE)
 #
 require 'faker'
 

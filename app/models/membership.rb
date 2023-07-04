@@ -13,6 +13,7 @@
 #  lounge_id    :uuid             not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  active       :boolean          default(TRUE)
 #
 class Membership < ApplicationRecord
   belongs_to :lounge
