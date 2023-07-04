@@ -54,6 +54,8 @@ class MembershipsController < ApplicationController
   def destroy
     @lounge = @membership.lounge
 
+    canceled_membership_email(@membership)
+
     @membership.destroy
     redirect_to "/lounges/#{@lounge.id}/memberships", status: :see_other
     flash[:notice] = 'Membership successfully deleted.'
@@ -95,5 +97,9 @@ class MembershipsController < ApplicationController
 
   def updated_membership_email(membership)
     UpdateMembershipMailer.with(membership: membership, lounge: membership.lounge).notify.deliver_now
+  end
+
+  def canceled_membership_email(membership)
+    DeletedMembershipMailer.with(membership: membership, lounge: membership.lounge).notify.deliver_now
   end
 end
