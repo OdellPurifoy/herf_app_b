@@ -1,10 +1,13 @@
-<h1>Editing event</h1>
+<div class='container' id='edit_membership'>
+ 
+  <h3 class='mb-3'>Editing event</h3>
 
-<%= render "form", event: @event %>
+  <%= render "form", event: @event %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this event", @event %> |
-  <%= link_to "Back to events", lounge_events_path(@event.lounge) %>
+  <div>
+    <%= link_to "Show this event", @event %> |
+    <%= link_to "Back to events", lounge_events_path(@event.lounge) %>
+  </div>
 </div>
