@@ -27,5 +27,7 @@ Rails.application.routes.draw do
     resources :special_offer_flyers, only: [:destroy]
   end
 
+  resources :subscriptions
+
   get 'my_lounge', to: 'lounges#my_lounge'
 end
