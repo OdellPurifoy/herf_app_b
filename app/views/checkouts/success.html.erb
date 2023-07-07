@@ -1,1 +1,10 @@
-<h1><%= current_user.first_name %> Thank you for subscribing!!<h1>
+<p style="color: green"><%= notice %></p>
+<div class='container' style='padding-top: 150px'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <h3>Thank you for subscribing!<h3>
+      <p>Create your lounge by following the link below</p>
+      <%= link_to 'Create Lounge', new_lounge_path, class: 'btn btn-warning' %>
+    </div>
+  </div>
+</div>
