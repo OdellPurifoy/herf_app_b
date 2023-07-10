@@ -17,6 +17,11 @@ gem 'devise'
 # User faker for testing data
 gem 'faker'
 
+gem 'inky-rb', require: 'inky'
+
+# Stylesheet inlining for email
+gem 'premailer-rails'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.5"
 

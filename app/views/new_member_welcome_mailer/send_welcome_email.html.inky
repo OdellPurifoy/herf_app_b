@@ -1,0 +1,60 @@
+<style type="text/css">
+
+.header {
+  background: #8a8a8a;
+}
+
+.header .columns {
+  padding-bottom: 0;
+}
+
+.header p {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.header .wrapper-inner {
+  padding: 20px; /*controls the height of the header*/
+}
+
+.header .container {
+  background: #8a8a8a;
+}
+
+.wrapper.secondary {
+  background: #f3f3f3;
+}
+
+</style>
+
+<container>
+
+  <spacer size="16"></spacer>
+  
+  <row>
+    <columns>
+      <h1>Hi, <%= @membership.first_name %></h1>
+      <p class="lead">Since you are a member of <%= @lounge.name %>, you'll receive information via email on events, special offers and members only deals.</p>
+    </columns>
+  </row>
+  
+  <wrapper class="secondary">
+    <spacer size="16"></spacer>
+    <row>
+      <columns small="12" large="6">
+        <h5>Connect With <%= @lounge.name %>:</h5>
+        <menu class="vertical">
+          <item style="text-align: left;" href="#">Twitter</item>
+          <item style="text-align: left;" href="#">Facebook</item>
+          <item style="text-align: left;" href="#">Instagram</item>
+        </menu>
+      </columns>
+      <columns small="12" large="6">
+        <h5>Contact Info:</h5>
+        <p>Phone: <%= @lounge.phone_number %></p>
+        <p>Email: <a href="mailto:"<%= @lounge.email %>><%= @lounge.email %></a></p>
+      </columns>
+    </row>
+  </wrapper>
+
+</container>
