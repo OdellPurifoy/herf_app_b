@@ -18,6 +18,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  id                     :uuid             not null, primary key
+#  admin                  :boolean          default(FALSE)
 #
 require 'rails_helper'
 
@@ -29,6 +30,7 @@ RSpec.describe User, type: :model do
     it { should have_db_column(:last_name).of_type(:string) }
     it { should have_db_column(:phone_number).of_type(:string) }
     it { should have_db_column(:username).of_type(:string) }
+    it { should have_db_column(:admin).of_type(:boolean) }
   end
 
   describe 'Model Associations' do

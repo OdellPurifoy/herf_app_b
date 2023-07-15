@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "/memberships", type: :request do
-  
+RSpec.describe '/memberships', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Membership. As you add validations to Membership, be sure to
   # adjust the attributes here as well.
@@ -10,7 +9,7 @@ RSpec.describe "/memberships", type: :request do
 
   before { sign_in user }
 
-  let(:valid_attributes) do 
+  let(:valid_attributes) do
     {
       first_name: 'Steve',
       last_name: 'Jones',
@@ -29,31 +28,31 @@ RSpec.describe "/memberships", type: :request do
       lounge: lounge
     }
   end
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       get "/lounges/#{lounge.id}/memberships"
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    let(:membership) {FactoryBot.create(:membership)}
-    it "renders a successful response" do
+  describe 'GET /show' do
+    let(:membership) { FactoryBot.create(:membership) }
+    it 'renders a successful response' do
       get "/memberships/#{membership.id}"
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
+  describe 'GET /new' do
     let(:membership) { FactoryBot.create(:membership) }
 
-    it "renders a successful response" do
+    it 'renders a successful response' do
       get "/memberships/#{membership.id}"
       expect(response).to be_successful
     end
   end
 
-  #TODO - make this work
+  # TODO: - make this work
   # describe "GET /edit" do
   #   let(:membership) { FactoryBot.create(:membership) }
 
@@ -103,13 +102,13 @@ RSpec.describe "/memberships", type: :request do
   #   end
 
   #   context "with invalid parameters" do
-    
+
   #     it "renders a response with 422 status (i.e. to display the 'edit' template)" do
   #       membership = Membership.create! valid_attributes
   #       patch membership_url(membership), params: { membership: invalid_attributes }
   #       expect(response).to have_http_status(:unprocessable_entity)
   #     end
-    
+
   #   end
   # end
 

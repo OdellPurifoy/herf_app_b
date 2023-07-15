@@ -23,8 +23,8 @@ FactoryBot.define do
     end_date { Date.today + 1.week }
     description { Faker::Lorem.paragraph }
     members_only { false }
-    offer_type { "BOGO (Buy one, get one)" }
-    offer_code { "BOGO123" }
+    offer_type { 'BOGO (Buy one, get one)' }
+    offer_code { 'BOGO123' }
     lounge
   end
 end

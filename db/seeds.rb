@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
-lounge = Lounge.find("ed50e814-c70d-4e5d-96cb-70026cbc2a8d")
+lounge = Lounge.find('ed50e814-c70d-4e5d-96cb-70026cbc2a8d')
 
 20.times do
   Membership.create!(
@@ -27,8 +27,8 @@ end
     end_date: Date.today + 1.week,
     description: Faker::Lorem.paragraph,
     members_only: false,
-    offer_type: "BOGO (Buy one, get one)",
-    offer_code: "BOGO123",
+    offer_type: 'BOGO (Buy one, get one)',
+    offer_code: 'BOGO123',
     lounge: lounge
   )
 end
@@ -62,4 +62,3 @@ end
     )
   end
 end
-

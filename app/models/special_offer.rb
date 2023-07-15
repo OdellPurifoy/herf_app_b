@@ -28,6 +28,6 @@ class SpecialOffer < ApplicationRecord
   paginates_per 10
 
   def self.search(search)
-    where("name LIKE ?", search + "%") if search
+    where('name LIKE ?', search + '%') if search
   end
 end

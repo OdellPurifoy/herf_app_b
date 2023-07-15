@@ -18,6 +18,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  id                     :uuid             not null, primary key
+#  admin                  :boolean          default(FALSE)
 #
 require 'faker'
 
@@ -30,5 +31,6 @@ FactoryBot.define do
     username { Faker::Internet.username }
     password { Faker::Internet.password }
     phone_number { '9008007000' }
+    admin { false }
   end
 end

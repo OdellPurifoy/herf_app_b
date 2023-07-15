@@ -51,7 +51,10 @@ class LoungesController < ApplicationController
 
   def my_lounge
     @current_user_lounge = current_user.lounge
-    redirect_to root_path, status: :not_found, notice: 'Sorry, your lounge could not be found.' unless @current_user_lounge.present?
+    return if @current_user_lounge.present?
+
+    redirect_to root_path, status: :not_found,
+                           notice: 'Sorry, your lounge could not be found.'
   end
 
   private

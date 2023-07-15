@@ -1,1 +1,1 @@
-json.partial! "rsvps/rsvp", rsvp: @rsvp
+json.partial! 'rsvps/rsvp', rsvp: @rsvp

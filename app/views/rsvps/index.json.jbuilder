@@ -1,1 +1,1 @@
-json.array! @rsvps, partial: "rsvps/rsvp", as: :rsvp
+json.array! @rsvps, partial: 'rsvps/rsvp', as: :rsvp
