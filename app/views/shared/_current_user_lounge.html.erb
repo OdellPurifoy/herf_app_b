@@ -1,18 +1,15 @@
-<%= render 'shared/lounge_owner_navbar' %>
-
 <section id="services" class="services">
-  <div class="container">
-
+  <div class="container" style="padding-top: 150px">
+    <%= render 'shared/lounge_owner_navbar' %><br/>
     <div class="row">
       <div class="col-md-6">
         <div class="icon-box">
           <% if @current_user_lounge.logo.present? %>
-            <%= image_tag @current_user_lounge.logo, class: 'rounded-circle', size: "100x100" %><br />
+            <%= image_tag @current_user_lounge.logo, class: 'thumbnail', size: "100x100" %><br />
           <% else %>
             <i class="bi bi-shop"></i>
           <% end %>
-          <br/>
-          <h4><%= @current_user_lounge&.name %></h4>
+          <h4 style='margin-left: 0px'><%= @current_user_lounge&.name %></h4>
         </div>
       </div>
       <div class="col-md-6 mt-4 mt-md-0">

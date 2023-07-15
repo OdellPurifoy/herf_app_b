@@ -56,12 +56,12 @@
 
       <label for="event-start-time" class="form-label">Start Time</label>
       <div class="input-group mb-3">
-        <%= form.time_field :start_time, class: 'form-control' %>
+        <%= form.time_field :start_time, value: "%H:%M", class: 'form-control' %>
       </div>
 
       <label for="event-end-time" class="form-label">End Time</label>
       <div class="input-group mb-3">
-        <%= form.time_field :end_time, class: 'form-control' %>
+        <%= form.time_field :end_time, value: "%H:%M", class: 'form-control' %>
       </div>
 
       <div class="form-check">
