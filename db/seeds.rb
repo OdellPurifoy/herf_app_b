@@ -3,6 +3,14 @@ return unless Rails.env.development?
 require 'faker'
 
 lounge = Lounge.find('66b8e75f-9893-4016-bda0-22e5315cb115')
+user = lounge.user
+
+20.times do
+  Notification.create!(
+    body: Faker::Lorem.paragraph,
+    user_id: user.id
+  )
+end
 
 20.times do
   Membership.create!(

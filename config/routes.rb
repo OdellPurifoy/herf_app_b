@@ -23,6 +23,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications do
+    member do
+      post :read
+      post :unread
+    end
+  end
+
   resources :special_offers do
     resources :special_offer_flyers, only: [:destroy]
   end
