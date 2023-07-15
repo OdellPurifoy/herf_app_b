@@ -29,14 +29,14 @@ RSpec.describe Rsvp, type: :model do
     let(:rsvp) { FactoryBot.create(:rsvp, number_of_guests: 2) }
 
     it 'does not raise an error' do
-      expect{rsvp}.to_not raise_error
+      expect { rsvp }.to_not raise_error
     end
 
     context 'when the number_of_guests is less than zero' do
       let(:rsvp) { FactoryBot.create(:rsvp, number_of_guests: -2) }
 
       it 'raises a validation error' do
-        expect{rsvp}.to raise_error
+        expect { rsvp }.to raise_error
       end
     end
   end

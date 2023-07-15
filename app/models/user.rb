@@ -18,6 +18,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  id                     :uuid             not null, primary key
+#  admin                  :boolean          default(FALSE)
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:

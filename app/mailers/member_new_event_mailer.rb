@@ -6,7 +6,7 @@ class MemberNewEventMailer < ApplicationMailer
     mail(
       from: 'herf@gmail.com',
       to: @membership.email,
-      subject: "You are invited!"
+      subject: 'You are invited!'
     )
   end
 end

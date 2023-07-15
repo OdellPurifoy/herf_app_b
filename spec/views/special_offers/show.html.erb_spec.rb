@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe "special_offers/show", type: :view do
+RSpec.describe 'special_offers/show', type: :view do
   before(:each) do
     assign(:special_offer, SpecialOffer.create!(
-      name: "Name",
-      description: "MyText",
-      members_only: false,
-      offer_type: "Offer Type",
-      offer_code: "Offer Code",
-      lounge: nil
-    ))
+                             name: 'Name',
+                             description: 'MyText',
+                             members_only: false,
+                             offer_type: 'Offer Type',
+                             offer_code: 'Offer Code',
+                             lounge: nil
+                           ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/MyText/)

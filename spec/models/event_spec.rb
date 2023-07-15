@@ -65,14 +65,14 @@ RSpec.describe Event, type: :model do
     let(:event) { FactoryBot.create(:event, event_description: 'Come join us for our event!') }
 
     it 'does not raise a length validation error' do
-      expect{event}.to_not raise_error
+      expect { event }.to_not raise_error
     end
 
     context 'when the event_description is too long' do
       let(:event) { FactoryBot.create(:event, event_description: Faker::Lorem.paragraph_by_chars(number: 2001)) }
 
       it 'raises a length validation error' do
-        expect{event}.to raise_error
+        expect { event }.to raise_error
       end
     end
   end

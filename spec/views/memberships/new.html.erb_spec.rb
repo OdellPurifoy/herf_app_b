@@ -1,33 +1,32 @@
 require 'rails_helper'
 
-RSpec.describe "memberships/new", type: :view do
+RSpec.describe 'memberships/new', type: :view do
   before(:each) do
     assign(:membership, Membership.new(
-      first_name: "MyString",
-      last_name: "MyString",
-      email: "MyString",
-      phone_number: "MyString",
-      do_not_text: false,
-      lounge: nil
-    ))
+                          first_name: 'MyString',
+                          last_name: 'MyString',
+                          email: 'MyString',
+                          phone_number: 'MyString',
+                          do_not_text: false,
+                          lounge: nil
+                        ))
   end
 
-  it "renders new membership form" do
+  it 'renders new membership form' do
     render
 
-    assert_select "form[action=?][method=?]", memberships_path, "post" do
+    assert_select 'form[action=?][method=?]', memberships_path, 'post' do
+      assert_select 'input[name=?]', 'membership[first_name]'
 
-      assert_select "input[name=?]", "membership[first_name]"
+      assert_select 'input[name=?]', 'membership[last_name]'
 
-      assert_select "input[name=?]", "membership[last_name]"
+      assert_select 'input[name=?]', 'membership[email]'
 
-      assert_select "input[name=?]", "membership[email]"
+      assert_select 'input[name=?]', 'membership[phone_number]'
 
-      assert_select "input[name=?]", "membership[phone_number]"
+      assert_select 'input[name=?]', 'membership[do_not_text]'
 
-      assert_select "input[name=?]", "membership[do_not_text]"
-
-      assert_select "input[name=?]", "membership[lounge_id]"
+      assert_select 'input[name=?]', 'membership[lounge_id]'
     end
   end
 end
