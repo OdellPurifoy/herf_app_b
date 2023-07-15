@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     YAML.safe_load(File.open(file))
   end
 
+  def after_sign_in_path_for(_resource)
+    root_path
+  end
+
   protected
 
   def configure_permitted_parameters
