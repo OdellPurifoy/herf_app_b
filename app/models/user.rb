@@ -28,6 +28,7 @@ class User < ApplicationRecord
 
   has_one :lounge, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates_presence_of :first_name, :last_name, :email, :date_of_birth, :username
   validates :phone_number, phone: { possible: true, allow_blank: true }

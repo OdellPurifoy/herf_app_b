@@ -30,13 +30,16 @@
               <li><a href="/" class="active">Home</a></li>
               <% if user_signed_in? && current_user.lounge.present? %>
                 <%= link_to 'My Lounge', my_lounge_path %>
+                <%= link_to "Notifications #{(current_user.notifications.unread.count)}", notifications_path %>
                 <%= link_to 'Profile', edit_user_registration_path %>
                 <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete %>
               <% elsif user_signed_in? && current_user.subscribed? %>
                 <%= link_to 'Create Lounge', new_lounge_path %>
+                <%= link_to "Notifications #{(current_user.notifications.unread.count)}", notifications_path %>(<%= current_user.notifications.unread.count %>)
                 <%= link_to 'Profile', edit_user_registration_path %>
                 <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete %>
               <% elsif user_signed_in? %>
+                <%= link_to "Notifications #{(current_user.notifications.unread.count)}", notifications_path %>(<%= current_user.notifications.unread.count %>)
                 <%= link_to 'Profile', edit_user_registration_path %>
                 <%= button_to 'Log Out', destroy_user_session_path, id: 'logout',  method: :delete %>
               <% else %>
