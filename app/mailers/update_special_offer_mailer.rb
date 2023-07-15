@@ -1,4 +1,4 @@
-class NewSpecialOfferMailer < ApplicationMailer
+class UpdateSpecialOfferMailer < ApplicationMailer
   def notify
     @special_offer = params[:special_offer]
     @membership = params[:membership]
@@ -6,7 +6,7 @@ class NewSpecialOfferMailer < ApplicationMailer
     mail(
       from: 'herf@gmail.com',
       to: @membership.email,
-      subject: 'New Special Offer!'
+      subject: 'Updated Special Offer'
     )
   end
 end
