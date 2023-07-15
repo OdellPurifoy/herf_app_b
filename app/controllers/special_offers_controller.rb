@@ -40,6 +40,7 @@ class SpecialOffersController < ApplicationController
   def update
     respond_to do |format|
       if @special_offer.update(special_offer_params)
+        update_special_offer(@special_offer)
         format.turbo_stream { redirect_to [@lounge, @special_offer] }
         format.html { redirect_to special_offer_url(@special_offer), notice: 'Special offer was successfully updated.' }
         format.json { render :show, status: :ok, location: @special_offer }
@@ -74,6 +75,12 @@ class SpecialOffersController < ApplicationController
   def new_special_offer_email(special_offer)
     special_offer.lounge.memberships.active.each do |membership|
       NewSpecialOfferMailer.with(special_offer: special_offer, membership: membership).notify.deliver_now
+    end
+  end
+
+  def update_special_offer(special_offer)
+    special_offer.lounge.memberships.active.each do |membership|
+      UpdateSpecialOfferMailer.with(special_offer: special_offer, membership: membership).notify.deliver_now
     end
   end
 end
