@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe UpdateSpecialOfferMailer, type: :mailer do
+RSpec.describe DeleteSpecialOfferMailer, type: :mailer do
   describe 'notify' do
-    let(:mail) { UpdateSpecialOfferMailer.notify }
+    let(:mail) { DeleteSpecialOfferMailer.notify }
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Notify')
