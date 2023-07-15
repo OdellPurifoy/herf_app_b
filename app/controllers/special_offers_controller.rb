@@ -26,6 +26,7 @@ class SpecialOffersController < ApplicationController
 
     respond_to do |format|
       if @special_offer.save
+        new_special_offer_email(@special_offer)
         format.turbo_stream { redirect_to special_offer_path(@special_offer) }
         format.html { redirect_to special_offer_url(@special_offer), notice: 'Special offer was successfully created.' }
         format.json { render :show, status: :created, location: @special_offer }
@@ -68,5 +69,11 @@ class SpecialOffersController < ApplicationController
   def special_offer_params
     params.require(:special_offer).permit(:name, :start_date, :end_date, :description, :members_only, :offer_type,
                                           :offer_code, :flyer)
+  end
+
+  def new_special_offer_email(special_offer)
+    special_offer.lounge.memberships.active.each do |membership|
+      NewSpecialOfferMailer.with(special_offer: special_offer, membership: membership).notify.deliver_now
+    end
   end
 end

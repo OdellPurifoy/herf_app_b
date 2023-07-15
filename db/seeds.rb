@@ -1,13 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+return unless Rails.env.development?
+
 require 'faker'
 
-lounge = Lounge.find('ed50e814-c70d-4e5d-96cb-70026cbc2a8d')
+lounge = Lounge.find('66b8e75f-9893-4016-bda0-22e5315cb115')
 
 20.times do
   Membership.create!(
