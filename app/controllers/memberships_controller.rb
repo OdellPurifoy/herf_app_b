@@ -28,6 +28,7 @@ class MembershipsController < ApplicationController
       if @membership.save
         new_member_welcome_email(@membership)
         format.turbo_stream { redirect_to membership_path(@membership) }
+        flash[:notice] = 'Membership successfully created.'
         format.html { redirect_to membership_url(@membership), notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
@@ -43,6 +44,7 @@ class MembershipsController < ApplicationController
         updated_membership_email(@membership)
         format.turbo_stream { redirect_to [@lounge, @membership] }
         format.html { redirect_to membership_url(@membership), notice: 'Membership was successfully updated.' }
+        flash[:notice] = 'Membership successfully updated.'
         format.json { render :show, status: :ok, location: @membership }
       else
         format.html { render :edit, status: :unprocessable_entity }
