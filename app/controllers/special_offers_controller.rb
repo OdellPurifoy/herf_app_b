@@ -28,6 +28,7 @@ class SpecialOffersController < ApplicationController
       if @special_offer.save
         new_special_offer_email(@special_offer)
         format.turbo_stream { redirect_to special_offer_path(@special_offer) }
+        flash[:notice] = 'Special offer successfully created.'
         format.html { redirect_to special_offer_url(@special_offer), notice: 'Special offer was successfully created.' }
         format.json { render :show, status: :created, location: @special_offer }
       else
@@ -42,6 +43,7 @@ class SpecialOffersController < ApplicationController
       if @special_offer.update(special_offer_params)
         update_special_offer_email(@special_offer)
         format.turbo_stream { redirect_to [@lounge, @special_offer] }
+        flash[:notice] = 'Special offer successfully updated.'
         format.html { redirect_to special_offer_url(@special_offer), notice: 'Special offer was successfully updated.' }
         format.json { render :show, status: :ok, location: @special_offer }
       else
@@ -54,8 +56,8 @@ class SpecialOffersController < ApplicationController
   def destroy
     delete_special_offer_email(@special_offer)
     @special_offer.destroy
-    redirect_to root_path, status: :see_other
     flash[:notice] = 'Special offer successfully deleted.'
+    redirect_to root_path, status: :see_other
   end
 
   private
