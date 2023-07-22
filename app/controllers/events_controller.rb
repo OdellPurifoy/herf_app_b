@@ -24,6 +24,7 @@ class EventsController < ApplicationController
       if @event.save
         notify_members(@event)
         format.turbo_stream { redirect_to event_path(@event) }
+        flash[:notice] = 'Event successfully created.'
         format.html { redirect_to event_url(@event), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -38,6 +39,7 @@ class EventsController < ApplicationController
       if @event.update(event_params)
         updated_event_members_notification(@event)
         format.turbo_stream { redirect_to [@lounge, @event] }
+        flash[:notice] = 'Event successfully updated.'
         format.html { redirect_to event_url(@event), notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
