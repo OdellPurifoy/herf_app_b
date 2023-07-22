@@ -8,5 +8,6 @@
 
   <div>
     <%= link_to "Back to events", lounge_events_path(@event.lounge) %>
+    <%= button_to "Destroy this event", @event, class: 'btn btn-warning', method: :delete %>
   </div>
 </div>
